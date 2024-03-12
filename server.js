@@ -2,17 +2,15 @@ const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const hbs = exphbs.create(); // Corrected here
 const path = require('path');
-
-
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
 app.engine('handlebars', hbs.engine);
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
