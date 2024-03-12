@@ -11,28 +11,22 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-// Set up Handlebars as the view engine
 app.engine('handlebars', hbs.engine);
 app.set('views', path.join(__dirname, 'views'));
 
-// Serve static files from the public folder
 app.use(express.static('public'));
 
-// Render the chat interface
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-// Socket.io handling
 io.on('connection', (socket) => {
   console.log('A user connected');
 
-  // Listen for chat messages
   socket.on('chat message', (msg) => {
-    io.emit('chat message', msg); // Broadcast the message to all connected clients
+    io.emit('chat message', msg);  
   });
 
-  // Handle disconnect
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });
