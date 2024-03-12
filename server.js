@@ -3,6 +3,8 @@ const http = require('http');
 const socketIO = require('socket.io');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
+const path = require('path');
+
 
 
 const app = express();
@@ -11,7 +13,7 @@ const io = socketIO(server);
 
 // Set up Handlebars as the view engine
 app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from the public folder
 app.use(express.static('public'));
