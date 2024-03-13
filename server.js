@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create(); // Corrected here
 const path = require('path');
 
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
